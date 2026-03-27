@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USTA Framework | Climate-Adaptive Building Design</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap');
+        
+        :root {
+            --primary: #FF6B35;
+            --secondary: #004E89;
+            --accent: #00A896;
+            --dark: #1A1A2E;
+            --light: #F7F7F7;
+            --gradient: linear-gradient(135deg, #FF6B35 0%, #FF9F1C 50%, #FFD166 100%);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+        }
+        
+        .bg-animation {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: linear-gradient(45deg, #1A1A2E 0%, #16213E 50%, #0F3460 100%);
+        }
+        .bg-animation::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 50%);
+            animation: rotate 30s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding: 2rem;
+        }
+        .sun {
+            width: 150px; height: 150px; background: var(--gradient); border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255,107,53,0.5), 0 0 100px rgba(255,159,28,0.3);
+            animation: pulse 4s ease-in-out infinite; margin-bottom: 2rem;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(255,107,53,0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 80px rgba(255,107,53,0.7); }
+        }
+        .hero h1 {
+            font-size: 3.5rem; font-weight: 700; margin-bottom: 0.5rem;
+            background: var(--gradient); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero .subtitle { font-size: 1.5rem; font-weight: 300; color: #B8B8B8; margin-bottom: 1rem; }
+        .hero .tagline { font-size: 1.2rem; color: var(--accent); margin-bottom: 2rem; }
+        .badges { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+        .badge {
+            padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600;
+            text-decoration: none; transition: all 0.3s ease;
+        }
+        .badge-primary { background: var(--primary); color: white; }
+        .badge-secondary { background: var(--secondary); color: white; }
+        .badge:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(255,107,53,0.3); }
+        
+        .stats {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem; padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px; padding: 2rem; text-align: center; transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px); border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(255,107,53,0.2);
+        }
+        .stat-number {
+            font-size: 3rem; font-weight: 700;
+            background: var(--gradient); -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .stat-label { color: #888; margin-top: 0.5rem; }
+        
+        .architecture { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
+        .section-title { font-size: 2rem; text-align: center; margin-bottom: 3rem; color: var(--primary); }
+        .arch-diagram {
+            background: rgba(255,255,255,0.03); border-radius: 20px;
+            padding: 3rem; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .arch-layers { display: flex; flex-direction: column; gap: 1.5rem; }
+        .arch-layer {
+            display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem;
+            background: rgba(255,255,255,0.05); border-radius: 15px;
+            border-left: 4px solid var(--primary); transition: all 0.3s ease;
+        }
+        .arch-layer:hover { background: rgba(255,255,255,0.08); transform: translateX(10px); }
+        .arch-layer:nth-child(2) { border-left-color: var(--secondary); }
+        .arch-layer:nth-child(3) { border-left-color: var(--accent); }
+        .layer-icon { font-size: 2rem; width: 60px; text-align: center; }
+        .layer-content h3 { font-size: 1.2rem; margin-bottom: 0.3rem; }
+        .layer-content p { color: #888; font-size: 0.9rem; }
+        
+        .results { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
+        .results-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+        .results-table th, .results-table td {
+            padding: 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .results-table th { background: rgba(255,107,53,0.2); color: var(--primary); font-weight: 600; }
+        .results-table tr:hover { background: rgba(255,255,255,0.05); }
+        .positive { color: #00FF88; }
+        
+        .fun-facts { padding: 4rem 2rem; background: rgba(0,0,0,0.3); }
+        .fun-facts-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem; max-width: 1200px; margin: 0 auto;
+        }
+        .fun-card {
+            background: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(0,78,137,0.1) 100%);
+            border-radius: 20px; padding: 2rem; border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+        .fun-card:hover { transform: scale(1.02); }
+        .fun-emoji { font-size: 3rem; margin-bottom: 1rem; }
+        .fun-title { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--primary); }
+        
+        footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer a { color: var(--primary); text-decoration: none; }
+        .author-info { margin-top: 1rem; color: #888; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .subtitle { font-size: 1rem; }
+            .stat-number { font-size: 2rem; }
+            .results-table { font-size: 0.8rem; }
+        }
+        
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <section class="hero">
+        <div class="sun"></div>
+        <h1>USTA Framework</h1>
+        <p class="subtitle">Unified Solar-Thermal-Adaptive</p>
+        <p class="tagline">🕐 Turning Static Shading into Time-Domain Control</p>
+        <div class="badges">
+            <a href="../main_twocolumn.pdf" class="badge badge-primary">📄 Read Paper</a>
+            <a href="https://github.com/kong-johnny/rush_jingshibei" class="badge badge-secondary">💻 GitHub</a>
+        </div>
+    </section>
+    
+    <section class="stats fade-in">
+        <div class="stat-card">
+            <div class="stat-number">44.8%</div>
+            <div class="stat-label">Cooling Load Reduction</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">35.7%</div>
+            <div class="stat-label">Heating Demand Cut</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">94.1%</div>
+            <div class="stat-label">Comfort Hours Achieved</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">45%</div>
+            <div class="stat-label">Survivability Boost</div>
+        </div>
+    </section>
+    
+    <section class="architecture fade-in">
+        <h2 class="section-title">🏗️ Three-Layer Architecture</h2>
+        <div class="arch-diagram">
+            <div class="arch-layers">
+                <div class="arch-layer">
+                    <div class="layer-icon">☀️</div>
+                    <div class="layer-content">
+                        <h3>Layer 1: Perez Sky Model</h3>
+                        <p>Anisotropic solar radiation • Circumsolar brightening • Horizon effects</p>
+                    </div>
+                </div>
+                <div class="arch-layer">
+                    <div class="layer-icon">🌡️</div>
+                    <div class="layer-content">
+                        <h3>Layer 2: 3R2C Thermal Network</h3>
+                        <p>Transient dynamics • Thermal lag • Reduced-order state-space</p>
+                    </div>
+                </div>
+                <div class="arch-layer">
+                    <div class="layer-icon">🎯</div>
+                    <div class="layer-content">
+                        <h3>Layer 3: NSGA-II + MPC</h3>
+                        <p>Bi-level optimization • Pareto front • Predictive control</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="results fade-in">
+        <h2 class="section-title">📊 Performance Results</h2>
+        <table class="results-table">
+            <thead>
+                <tr><th>Scenario</th><th>Metric</th><th>USTA</th><th>Baseline</th><th>Delta</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>🏠 Warm Climate</td><td>Cooling Load Proxy</td><td>-</td><td>-</td><td class="positive">↓ 44.8%</td></tr>
+                <tr><td>❄️ Cold Climate</td><td>Heating Demand</td><td>-</td><td>-</td><td class="positive">↓ 35.7%</td></tr>
+                <tr><td>👥 Dynamic Occupancy</td><td>Comfort Rate</td><td>94.1%</td><td>78.3%</td><td class="positive">+15.8 pp</td></tr>
+                <tr><td>🔌 Grid Outage</td><td>Hours ≥15°C</td><td>45%</td><td>18%</td><td class="positive">+27 pp</td></tr>
+            </tbody>
+        </table>
+    </section>
+    
+    <section class="fun-facts fade-in">
+        <h2 class="section-title">🤓 Why USTA is Cool</h2>
+        <div class="fun-facts-grid">
+            <div class="fun-card">
+                <div class="fun-emoji">⏰</div>
+                <div class="fun-title">Every Hour Matters</div>
+                <p>Unlike traditional "noon-only" shading, USTA evaluates all 8,760 hours in a year. Because your building doesn't just exist at 12 PM.</p>
+            </div>
+            <div class="fun-card">
+                <div class="fun-emoji">🧠</div>
+                <div class="fun-title">5 Objectives, One Pareto</div>
+                <p>Energy, comfort, glare, survivability, actuation. We don't pick winners—we let you choose from the Pareto frontier.</p>
+            </div>
+            <div class="fun-card">
+                <div class="fun-emoji">🔌</div>
+                <div class="fun-title">Survive the Blackout</div>
+                <p>When the grid fails, USTA buildings stay comfortable 2.5× longer. Passive survivability isn't just for doomsday preppers.</p>
+            </div>
+            <div class="fun-card">
+                <div class="fun-emoji">🌍</div>
+                <div class="fun-title">Latitude Matters</div>
+                <p>0-30°? Cooling. 45°+? Heating. 30-45°? It's complicated. We mapped the transition zones so you don't have to guess.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>Made with ☀️ for a cooler planet</p>
+        <div class="author-info">
+            <p><strong>Qingru Zhang</strong> (张清茹)</p>
+            <p>School of Artificial Intelligence, Beijing Normal University</p>
+            <p>Advised by Prof. Guo Jianwei</p>
+        </div>
+        <p style="margin-top: 2rem;">
+            <a href="../main_twocolumn.pdf">📄 Paper</a> • 
+            <a href="../figures/">📊 Figures</a> • 
+            <a href="../scripts/">🔧 Scripts</a>
+        </p>
+    </footer>
+    
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
