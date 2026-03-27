@@ -210,7 +210,11 @@ E^{beam}_{f,t} = DNI_t \cdot \max(0, \cos\theta_{i,f,t})
 The diffuse component follows the Perez (1990) all-weather transposition model \cite{perez1990}, which accounts for circumsolar brightening (coefficient $F_{1,t}$) and horizon brightening (coefficient $F_{2,t}$):
 \begin{equation}
 \label{eq:diffuse}
-E^{diff}_{f,t} = DHI_t \cdot \left[ \frac{(1 - F_{1,t})(1 + \cos\beta_f)}{2} + \frac{F_{1,t} \cdot \max(0, \cos\theta_{i,f,t})}{\max(\cos\theta_{z,t}, \epsilon_0)} + F_{2,t} \cdot \sin\beta_f \right]
+\begin{split}
+E^{diff}_{f,t} = DHI_t \cdot \Bigg[ & \frac{(1 - F_{1,t})(1 + \cos\beta_f)}{2} \\
+& + \frac{F_{1,t} \cdot \max(0, \cos\theta_{i,f,t})}{\max(\cos\theta_{z,t}, \epsilon_0)} \\
+& + F_{2,t} \cdot \sin\beta_f \Bigg]
+\end{split}
 \end{equation}
 where $\epsilon_0 = 0.087$ is a numerical stability constant. The Perez coefficients $F_{1,t}$ and $F_{2,t}$ are obtained from empirical lookup tables indexed by sky clearness and brightness.
 
