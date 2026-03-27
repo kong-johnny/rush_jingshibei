@@ -56,12 +56,14 @@ for metric_data in morris.values():
                                for v in metric_data['sigma']]
 
 # ── Plot (1 row × 3 panels) ───────────────────────────────────────────────
-fig, axes = plt.subplots(1, 3, figsize=(8.5, 3.5), sharey=False)
+fig, axes = plt.subplots(1, 3, figsize=(10, 3.5), sharey=False)
 
 metric_titles = list(morris.keys())
-axis_max = {'M1 – Cooling Energy': (0.85, 0.40),
-            'M2 – DGI Exceedance': (0.95, 0.40),
-            'M3 – Comfort Rate':   (0.80, 0.45)}
+# Make all axes square with same limit
+axis_max_val = 1.0
+axis_max = {'M1 – Cooling Energy': (axis_max_val, axis_max_val),
+            'M2 – DGI Exceedance': (axis_max_val, axis_max_val),
+            'M3 – Comfort Rate':   (axis_max_val, axis_max_val)}
 
 for ax, (metric, data) in zip(axes, morris.items()):
     mu_star = data['mu_star']
@@ -92,6 +94,7 @@ for ax, (metric, data) in zip(axes, morris.items()):
     ax.set_title(metric, fontsize=9.5)
     ax.set_xlim(0, xlim)
     ax.set_ylim(0, ylim)
+    ax.set_aspect('equal', adjustable='box')
 
 # Shared legend (from first panel)
 legend_handles = [
