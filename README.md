@@ -40,49 +40,6 @@ The framework consists of three integrated layers:
 | Dynamic Occupancy | Comfort Hours | 94.1% | 78.3% | +15.8 pp |
 | Grid Outage | Hours ≥15°C | 45% | 18% | +27 pp |
 
-## 📊 Results Overview
-
-### Pareto Front (Multi-Objective Optimization)
-
-<div align="center">
-<img src="./figures/figure_2.png" width="600">
-</div>
-
-Five objectives optimized simultaneously: energy, comfort, glare, survivability, and actuation smoothness.
-
-### Winter Temperature & Survivability
-
-<div align="center">
-<img src="./figures/figure_4.png" width="400">
-<img src="./figures/figure_5.png" width="400">
-</div>
-
-Left: Winter indoor temperature trajectory. Right: 72-hour grid outage survivability.
-
-### MPC Control Performance
-
-<div align="center">
-<img src="./figures/figure_6.png" width="600">
-</div>
-
-Model Predictive Control maintains 94.1% comfort hours under dynamic occupancy.
-
-### Cross-Latitude Generalization
-
-<div align="center">
-<img src="./figures/figure_7.png" width="600">
-</div>
-
-Optimal shading strategies vary systematically with latitude: cooling-dominated (0-30°), transition (30-45°), heating-dominated (45°+).
-
-### Sensitivity Analysis
-
-<div align="center">
-<img src="./figures/figure_8.png" width="600">
-</div>
-
-Morris screening identifies key design parameters: thermal mass, night insulation, and overhang ratio.
-
 ## 🔬 Ablation Study
 
 | Remove Module | Impact | Magnitude |
