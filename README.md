@@ -125,18 +125,6 @@ pdflatex main_twocolumn.tex
 pdflatex main_twocolumn.tex
 ```
 
-## 📖 Citation
-
-```bibtex
-@article{zhang2024usta,
-  title={From Static Shading to Time-Domain Control: A Unified Solar-Thermal-Adaptive Framework for Climate-Adaptive Passive Building Design},
-  author={Zhang, Qingru},
-  journal={Energy and Buildings},
-  year={2024},
-  institution={Beijing Normal University}
-}
-```
-
 ## 👤 Author
 
 **Qingru Zhang (张清茹)**
