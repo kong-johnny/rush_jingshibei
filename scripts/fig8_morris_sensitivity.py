@@ -103,9 +103,7 @@ fig.legend(handles=legend_handles, fontsize=8.5,
            loc='lower center', ncol=4,
            bbox_to_anchor=(0.5, -0.05), framealpha=0.95)
 
-fig.suptitle('Fig. 8 — Morris Sensitivity Analysis: Design Parameter Influence\n'
-             'on Three Key Objectives (r = 20 trajectories, Δ = 2/3)',
-             fontsize=10, y=1.02)
+# Title removed
 
 plt.tight_layout(rect=[0, 0.05, 1, 1])
 plt.savefig(f'{FIGDIR}/figure_8.png', bbox_inches='tight')
