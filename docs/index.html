@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USTA Framework | Climate-Adaptive Building Design</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         
         :root {
             --primary: #FF6B35;
@@ -84,24 +84,21 @@
         }
         .stat-label { color: #888; margin-top: 0.5rem; }
         
-        .architecture { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
-        .section-title { font-size: 2rem; text-align: center; margin-bottom: 3rem; color: var(--primary); }
-        .arch-diagram {
+        .section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2rem; text-align: center; margin-bottom: 1rem; color: var(--primary); }
+        .section-subtitle { text-align: center; color: #888; margin-bottom: 2rem; }
+        
+        .figure-container {
             background: rgba(255,255,255,0.03); border-radius: 20px;
-            padding: 3rem; border: 1px solid rgba(255,255,255,0.1);
+            padding: 2rem; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 3rem;
         }
-        .arch-layers { display: flex; flex-direction: column; gap: 1.5rem; }
-        .arch-layer {
-            display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem;
-            background: rgba(255,255,255,0.05); border-radius: 15px;
-            border-left: 4px solid var(--primary); transition: all 0.3s ease;
+        .figure-container img {
+            width: 100%; max-width: 900px; border-radius: 10px; display: block; margin: 0 auto;
         }
-        .arch-layer:hover { background: rgba(255,255,255,0.08); transform: translateX(10px); }
-        .arch-layer:nth-child(2) { border-left-color: var(--secondary); }
-        .arch-layer:nth-child(3) { border-left-color: var(--accent); }
-        .layer-icon { font-size: 2rem; width: 60px; text-align: center; }
-        .layer-content h3 { font-size: 1.2rem; margin-bottom: 0.3rem; }
-        .layer-content p { color: #888; font-size: 0.9rem; }
+        .figure-caption { text-align: center; color: #888; margin-top: 1rem; font-size: 0.9rem; }
+        
+        .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
+        .two-col img { width: 100%; border-radius: 10px; }
         
         .results { padding: 4rem 2rem; max-width: 1000px; margin: 0 auto; }
         .results-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
@@ -135,6 +132,7 @@
             .hero .subtitle { font-size: 1rem; }
             .stat-number { font-size: 2rem; }
             .results-table { font-size: 0.8rem; }
+            .two-col { grid-template-columns: 1fr; }
         }
         
         .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
@@ -148,10 +146,10 @@
         <div class="sun"></div>
         <h1>USTA Framework</h1>
         <p class="subtitle">Unified Solar-Thermal-Adaptive</p>
-        <p class="tagline">🕐 Turning Static Shading into Time-Domain Control</p>
+        <p class="tagline">Turning Static Shading into Time-Domain Control</p>
         <div class="badges">
-            <a href="https://github.com/kong-johnny/rush_jingshibei/raw/main/main_twocolumn.pdf" class="badge badge-primary">📄 Read Paper</a>
-            <a href="https://github.com/kong-johnny/rush_jingshibei" class="badge badge-secondary">💻 GitHub</a>
+            <a href="https://github.com/kong-johnny/rush_jingshibei/raw/main/main_twocolumn.pdf" class="badge badge-primary">Read Paper</a>
+            <a href="https://github.com/kong-johnny/rush_jingshibei" class="badge badge-secondary">GitHub</a>
         </div>
     </section>
     
@@ -174,95 +172,125 @@
         </div>
     </section>
     
-    <section class="architecture fade-in">
-        <h2 class="section-title">🏗️ Three-Layer Architecture</h2>
-        <div class="arch-diagram">
-            <div class="arch-layers">
-                <div class="arch-layer">
-                    <div class="layer-icon">☀️</div>
-                    <div class="layer-content">
-                        <h3>Layer 1: Perez Sky Model</h3>
-                        <p>Anisotropic solar radiation • Circumsolar brightening • Horizon effects</p>
-                    </div>
-                </div>
-                <div class="arch-layer">
-                    <div class="layer-icon">🌡️</div>
-                    <div class="layer-content">
-                        <h3>Layer 2: 3R2C Thermal Network</h3>
-                        <p>Transient dynamics • Thermal lag • Reduced-order state-space</p>
-                    </div>
-                </div>
-                <div class="arch-layer">
-                    <div class="layer-icon">🎯</div>
-                    <div class="layer-content">
-                        <h3>Layer 3: NSGA-II + MPC</h3>
-                        <p>Bi-level optimization • Pareto front • Predictive control</p>
-                    </div>
-                </div>
+    <section class="section fade-in">
+        <h2 class="section-title">Framework Architecture</h2>
+        <p class="section-subtitle">Three integrated layers: Solar - Thermal - Control</p>
+        <div class="figure-container">
+            <img src="https://raw.githubusercontent.com/kong-johnny/rush_jingshibei/main/figures/figure_1.png" alt="USTA Framework">
+            <p class="figure-caption">Figure 1: Unified Solar-Thermal-Adaptive (USTA) Framework Architecture</p>
+        </div>
+    </section>
+    
+    <section class="section fade-in">
+        <h2 class="section-title">Multi-Objective Optimization</h2>
+        <p class="section-subtitle">Five objectives optimized simultaneously via NSGA-II</p>
+        <div class="figure-container">
+            <img src="https://raw.githubusercontent.com/kong-johnny/rush_jingshibei/main/figures/figure_2.png" alt="Pareto Front">
+            <p class="figure-caption">Figure 2: Pareto-optimal front across energy, comfort, glare, survivability, and actuation objectives</p>
+        </div>
+    </section>
+    
+    <section class="section fade-in">
+        <h2 class="section-title">Winter Performance and Survivability</h2>
+        <div class="two-col">
+            <div class="figure-container">
+                <img src="https://raw.githubusercontent.com/kong-johnny/rush_jingshibei/main/figures/figure_4.png" alt="Winter Temperature">
+                <p class="figure-caption">Figure 4: Winter indoor temperature trajectory</p>
+            </div>
+            <div class="figure-container">
+                <img src="https://raw.githubusercontent.com/kong-johnny/rush_jingshibei/main/figures/figure_5.png" alt="Outage Survivability">
+                <p class="figure-caption">Figure 5: 72-hour grid outage survivability</p>
             </div>
         </div>
     </section>
     
+    <section class="section fade-in">
+        <h2 class="section-title">MPC Control Performance</h2>
+        <p class="section-subtitle">Model Predictive Control maintains 94.1% comfort under dynamic occupancy</p>
+        <div class="figure-container">
+            <img src="https://raw.githubusercontent.com/kong-johnny/rush_jingshibei/main/figures/figure_6.png" alt="MPC Control">
+            <p class="figure-caption">Figure 6: MPC anticipates occupancy surges and pre-cools space</p>
+        </div>
+    </section>
+    
+    <section class="section fade-in">
+        <h2 class="section-title">Cross-Latitude Generalization</h2>
+        <p class="section-subtitle">Optimal shading strategies vary systematically with latitude</p>
+        <div class="figure-container">
+            <img src="https://raw.githubusercontent.com/kong-johnny/rush_jingshibei/main/figures/figure_7.png" alt="Latitude Generalization">
+            <p class="figure-caption">Figure 7: Cooling-dominated (0-30 deg), Transition (30-45 deg), Heating-dominated (45+ deg)</p>
+        </div>
+    </section>
+    
+    <section class="section fade-in">
+        <h2 class="section-title">Sensitivity Analysis</h2>
+        <p class="section-subtitle">Morris screening identifies key design parameters</p>
+        <div class="figure-container">
+            <img src="https://raw.githubusercontent.com/kong-johnny/rush_jingshibei/main/figures/figure_8.png" alt="Sensitivity">
+            <p class="figure-caption">Figure 8: Thermal mass, night insulation, and overhang ratio are most influential</p>
+        </div>
+    </section>
+    
     <section class="results fade-in">
-        <h2 class="section-title">📊 Performance Results</h2>
+        <h2 class="section-title">Performance Summary</h2>
         <table class="results-table">
             <thead>
                 <tr><th>Scenario</th><th>Metric</th><th>USTA</th><th>Baseline</th><th>Delta</th></tr>
             </thead>
             <tbody>
-                <tr><td>🏠 Warm Climate</td><td>Cooling Load Proxy</td><td>-</td><td>-</td><td class="positive">↓ 44.8%</td></tr>
-                <tr><td>❄️ Cold Climate</td><td>Heating Demand</td><td>-</td><td>-</td><td class="positive">↓ 35.7%</td></tr>
-                <tr><td>👥 Dynamic Occupancy</td><td>Comfort Rate</td><td>94.1%</td><td>78.3%</td><td class="positive">+15.8 pp</td></tr>
-                <tr><td>🔌 Grid Outage</td><td>Hours ≥15°C</td><td>45%</td><td>18%</td><td class="positive">+27 pp</td></tr>
+                <tr><td>Warm Climate</td><td>Cooling Load Proxy</td><td>-</td><td>-</td><td class="positive">Down 44.8%</td></tr>
+                <tr><td>Cold Climate</td><td>Heating Demand</td><td>-</td><td>-</td><td class="positive">Down 35.7%</td></tr>
+                <tr><td>Dynamic Occupancy</td><td>Comfort Rate</td><td>94.1%</td><td>78.3%</td><td class="positive">+15.8 pp</td></tr>
+                <tr><td>Grid Outage</td><td>Hours above 15C</td><td>45%</td><td>18%</td><td class="positive">+27 pp</td></tr>
             </tbody>
         </table>
     </section>
     
     <section class="fun-facts fade-in">
-        <h2 class="section-title">🤓 Why USTA is Cool</h2>
+        <h2 class="section-title">Why USTA is Cool</h2>
         <div class="fun-facts-grid">
             <div class="fun-card">
-                <div class="fun-emoji">⏰</div>
+                <div class="fun-emoji">1</div>
                 <div class="fun-title">Every Hour Matters</div>
-                <p>Unlike traditional "noon-only" shading, USTA evaluates all 8,760 hours in a year. Because your building doesn't just exist at 12 PM.</p>
+                <p>Unlike traditional noon-only shading, USTA evaluates all 8,760 hours in a year. Because your building does not just exist at 12 PM.</p>
             </div>
             <div class="fun-card">
-                <div class="fun-emoji">🧠</div>
+                <div class="fun-emoji">2</div>
                 <div class="fun-title">5 Objectives, One Pareto</div>
-                <p>Energy, comfort, glare, survivability, actuation. We don't pick winners—we let you choose from the Pareto frontier.</p>
+                <p>Energy, comfort, glare, survivability, actuation. We do not pick winners - we let you choose from the Pareto frontier.</p>
             </div>
             <div class="fun-card">
-                <div class="fun-emoji">🔌</div>
+                <div class="fun-emoji">3</div>
                 <div class="fun-title">Survive the Blackout</div>
-                <p>When the grid fails, USTA buildings stay comfortable 2.5× longer. Passive survivability isn't just for doomsday preppers.</p>
+                <p>When the grid fails, USTA buildings stay comfortable 2.5x longer. Passive survivability is not just for doomsday preppers.</p>
             </div>
             <div class="fun-card">
-                <div class="fun-emoji">🌍</div>
+                <div class="fun-emoji">4</div>
                 <div class="fun-title">Latitude Matters</div>
-                <p>0-30°? Cooling. 45°+? Heating. 30-45°? It's complicated. We mapped the transition zones so you don't have to guess.</p>
+                <p>0-30 deg? Cooling. 45+ deg? Heating. 30-45 deg? It is complicated. We mapped the transition zones so you do not have to guess.</p>
             </div>
         </div>
     </section>
     
     <footer>
-        <p>Made with ☀️ for a cooler planet</p>
+        <p>Made with sun for a cooler planet</p>
         <div class="author-info">
-            <p><strong>Qingru Zhang</strong> (张清茹)</p>
+            <p><strong>Qingru Zhang</strong></p>
             <p>School of Artificial Intelligence, Beijing Normal University</p>
             <p>Advised by Prof. Guo Jianwei</p>
         </div>
         <p style="margin-top: 2rem;">
-            <a href="https://github.com/kong-johnny/rush_jingshibei/raw/main/main_twocolumn.pdf">📄 Paper</a> • 
-            <a href="https://github.com/kong-johnny/rush_jingshibei/tree/main/figures">📊 Figures</a> • 
-            <a href="https://github.com/kong-johnny/rush_jingshibei/tree/main/scripts">🔧 Scripts</a>
+            <a href="https://github.com/kong-johnny/rush_jingshibei/raw/main/main_twocolumn.pdf">Paper</a> - 
+            <a href="https://github.com/kong-johnny/rush_jingshibei/tree/main/figures">Figures</a> - 
+            <a href="https://github.com/kong-johnny/rush_jingshibei/tree/main/scripts">Scripts</a>
         </p>
     </footer>
     
     <script>
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add("visible"); });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
