@@ -1,4 +1,4 @@
-\documentclass[preprint,12pt]{elsarticle}
+\documentclass[5p,times,twocolumn]{elsarticle}
 
 \usepackage{lineno}
 \usepackage{graphicx}
@@ -16,14 +16,6 @@
 
 \bibliographystyle{elsarticle-num-names}
 
-\usepackage{float}
-\setcounter{topnumber}{4}
-\setcounter{bottomnumber}{4}
-\setcounter{totalnumber}{8}
-\renewcommand{\textfraction}{0.05}
-\renewcommand{\topfraction}{0.95}
-\renewcommand{\bottomfraction}{0.95}
-\renewcommand{\floatpagefraction}{0.95}
 \begin{document}
 
 \begin{frontmatter}
@@ -91,11 +83,12 @@ We reformulate passive solar building design as a time-domain sequential decisio
 
 Let $\mathcal{T} = \{0, 1, \ldots, N\}$ denote the discrete time index set with uniform time step $\Delta t$ (e.g., 15 min), giving a total simulation horizon of one typical meteorological year ($N = 365 \times 24 \times 4 = 35,040$ steps). Let $\mathcal{F} = \{N, E, S, W\}$ be the set of facade orientations, each characterized by tilt angle $\beta_f$ and azimuth $\gamma_f$. For a single thermal zone with the 3R2C approximation, the state dimension is $n_x = 2$. Key notation is summarized in Table \ref{tab:notation}.
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
+\footnotesize
 \caption{Mathematical notation used throughout the paper.}
 \label{tab:notation}
-\begin{tabularx}{\textwidth}{@{} l >{\raggedright\arraybackslash}X l @{}}
+\begin{tabularx}{\columnwidth}{@{} l >{\raggedright\arraybackslash}X l @{}}
 \toprule
 \textbf{Symbol} & \textbf{Description} & \textbf{Unit} \\
 \midrule
@@ -193,12 +186,12 @@ The inner layer solves a receding-horizon optimal control problem at each step $
 
 The USTA framework processes weather inputs through three sequential computational layers---radiation transposition, thermal state dynamics, and hierarchical optimization/control---as illustrated in Figure \ref{fig:framework}. Each layer is described below.
 
-\begin{figure}[htbp]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=0.9\textwidth]{figures/figure_1.png}
+\includegraphics[width=0.85\textwidth]{figures/figure_1.png}
 \caption{Overall architecture of the USTA framework. Weather inputs are transposed to facade-plane irradiance via the Perez anisotropic sky model, coupled to the 3R2C thermal state update, and fed into the offline multi-objective design optimizer (NSGA-II) and online MPC controller.}
 \label{fig:framework}
-\end{figure}
+\end{figure*}
 
 \subsection{Layer 1: Anisotropic Solar Radiation Transposition (Perez Model)}
 
@@ -283,7 +276,7 @@ USTA employs a two-stage hierarchical solver that separates slow design decision
 
 Algorithm \ref{alg:usta} summarizes the complete USTA procedure.
 
-\begin{algorithm}[H]
+\begin{algorithm}[!t]
 \caption{USTA Hierarchical Design-Control Pipeline}
 \label{alg:usta}
 \small
@@ -348,8 +341,9 @@ We evaluate the USTA framework across four complementary case studies that colle
 
 All building and system parameters used in the experiments are listed in Tables \ref{tab:building} and \ref{tab:solver}.
 
-\begin{table}[htbp]
+\begin{table*}[!t]
 \centering
+\small
 \caption{Building thermal and geometric parameters for all case studies.}
 \label{tab:building}
 \begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}X c c c c l @{}}
@@ -367,13 +361,14 @@ Passive survivability limit & $T_{safe}$ & -- & 15 & -- & $^\circ$C \\
 Glazing ratio (S facade) & $WWR_S$ & 0.4 & 0.5 & 0.35 & -- \\
 \bottomrule
 \end{tabularx}
-\end{table}
+\end{table*}
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
+\footnotesize
 \caption{NSGA-II and MPC solver parameters.}
 \label{tab:solver}
-\begin{tabularx}{\textwidth}{@{} l l >{\raggedright\arraybackslash}X @{}}
+\begin{tabularx}{\columnwidth}{@{} l l >{\raggedright\arraybackslash}X @{}}
 \toprule
 \textbf{Parameter} & \textbf{Value} & \textbf{Description} \\
 \midrule
@@ -410,8 +405,9 @@ Four baselines are designed to isolate the contribution of each USTA component:
 
 Table \ref{tab:ablation-design} presents the ablation matrix. Each row removes one USTA component.
 
-\begin{table}[htbp]
+\begin{table*}[!t]
 \centering
+\small
 \caption{Ablation matrix. Each row removes one USTA component.}
 \label{tab:ablation-design}
 \begin{tabularx}{\textwidth}{@{} l c c c c >{\raggedright\arraybackslash}X @{}}
@@ -425,7 +421,7 @@ A3 (no MPC) & Y & Y & N & Y & Peak over-temperature and comfort violations incre
 A4 (no Pareto) & Y & Y & Y & N & Sub-optimal trade-offs, non-convex front missed \\
 \bottomrule
 \end{tabularx}
-\end{table}
+\end{table*}
 
 \subsection{Evaluation Metrics}
 
@@ -438,9 +434,9 @@ We report the following metrics for each case study: (i) Annual cooling/heating 
 
 Figure \ref{fig:cs1-pareto} shows the Pareto front obtained by USTA-Full for CS1, plotting annual cooling load proxy against DGI exceedance rate. The Pareto front clearly reveals the trade-off between solar rejection and daylight quality: aggressive shading reduces cooling load but increases glare risk during partially overcast mornings when diffuse circumsolar radiation dominates. This trade-off is largely invisible to the static solar-noon baseline (B1), which selects a single point on the Pareto front and systematically underestimates diffuse-sky contributions.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/figure_2.png}
+\includegraphics[width=\columnwidth]{figures/figure_2.png}
 \caption{Pareto front for CS1 (warm-climate retrofit): annual cooling load proxy (kWh/yr) vs.\ DGI exceedance rate (\% occupied hours). USTA-Full dominates the single-objective baseline B4. The knee-point selection $z^*$ (star) achieves the best energy-comfort-glare balance.}
 \label{fig:cs1-pareto}
 \end{figure}
@@ -449,18 +445,19 @@ The knee-point design $z^*$ (overhang depth ratio $r_{oh} = 0.62$, SHGC $= 0.31$
 
 Figure \ref{fig:cs1-irradiance} shows the daily solar irradiance profile for a peak summer day, comparing transmitted irradiance under the baseline and USTA-optimized facade. The anisotropic Perez model captures the morning circumsolar peak (08:00--10:00) that isotropic models miss by up to 38 W/m$^2$, demonstrating the necessity of the Perez radiation layer for accurate shading sizing.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/figure_3.png}
+\includegraphics[width=\columnwidth]{figures/figure_3.png}
 \caption{Transmitted direct solar irradiance on a peak summer day (CS1). USTA (Perez) vs.\ B1 (isotropic). The Perez model captures morning circumsolar peaks missed by isotropic baseline.}
 \label{fig:cs1-irradiance}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
+\footnotesize
 \caption{CS1 quantitative results: USTA-Full vs.\ all baselines.}
 \label{tab:cs1-results}
-\begin{tabularx}{\textwidth}{@{} l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+\begin{tabularx}{\columnwidth}{@{} l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
 \toprule
 \textbf{Method} & \textbf{Cooling reduction (\%)} & \textbf{DGI exceedance (\%)} & \textbf{Pareto front size} \\
 \midrule
@@ -477,27 +474,28 @@ A1 (no Perez) & 40.1 & 4.7 & 39 solutions \\
 
 Figure \ref{fig:cs2-winter} shows the winter indoor temperature trajectory under the USTA-optimized 3R2C retrofit (increased thermal mass $k_C = 2.5\times$, night insulation $k_R = 3.0\times$) compared with the unretrofitted baseline and B2 (steady-state model). The USTA retrofit reduces auxiliary heating demand by 35.7\% over the winter season. The thermal mass increase extends the effective time constant of the building envelope from $\tau = 8.2$ h (baseline) to $\tau = 19.6$ h, enabling the building to store daytime solar gains and release them during the nocturnal temperature dip.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/figure_4.png}
+\includegraphics[width=\columnwidth]{figures/figure_4.png}
 \caption{CS2 winter performance: indoor temperature ($T_{in}$) vs.\ outdoor temperature ($T_{out}$) for unretrofitted baseline, B2 (steady-state), and USTA (3R2C). USTA maintains $T_{in}$ above 18$^\circ$C 8.3 hours longer per day on average.}
 \label{fig:cs2-winter}
 \end{figure}
 
 The passive survivability analysis (72-hour outage scenario, mid-winter) shows that the USTA-retrofitted building maintains $T_{in} \geq 15^\circ$C for 45\% of winter outage hours, compared with 18\% for the B2 baseline. B2 overestimates steady-state losses by not capturing the thermal lag contribution of the mass layer, underscoring the necessity of the 3R2C transient representation for resilience-oriented design.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/figure_5.png}
+\includegraphics[width=\columnwidth]{figures/figure_5.png}
 \caption{CS2 passive survivability: indoor temperature during 72-hour outage scenario at mid-winter. USTA (3R2C) vs.\ B2 (steady-state R-value) vs.\ unretrofitted baseline.}
 \label{fig:cs2-survivability}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
+\footnotesize
 \caption{CS2 quantitative results: heating demand and passive survivability.}
 \label{tab:cs2-results}
-\begin{tabularx}{\textwidth}{@{} l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+\begin{tabularx}{\columnwidth}{@{} l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
 \toprule
 \textbf{Method} & \textbf{Heating reduction (\%)} & \textbf{Passive survivability (\%)} & \textbf{Thermal time const.\ (h)} \\
 \midrule
@@ -514,18 +512,19 @@ A3 (no MPC) & 31.5 & 39.8 & 19.6 \\
 
 Figure \ref{fig:cs3-mpc} compares the MPC controller (USTA-Full) against the reactive baseline B3 and the no-MPC ablation A3 over a representative week with high occupancy variability. The MPC controller correctly anticipates a large afternoon occupancy surge (300+ persons) 2--3 hours in advance, pre-closing louvers to pre-cool the space before peak load, resulting in a 28\% reduction in peak thermal stress compared with B3. Over the full evaluation period, the MPC maintains indoor comfort ($T_{low} \leq T_{in} \leq T_{high}$) for 94.1\% of operational hours, versus 78.3\% for B3 and 87.6\% for A3.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/figure_6.png}
+\includegraphics[width=\columnwidth]{figures/figure_6.png}
 \caption{CS3 MPC performance over a representative 7-day period. Upper: louver angle ($\theta_{lou}$) trajectory for USTA-Full (MPC) vs.\ B3 (reactive). Lower: indoor temperature $T_{in}$ with comfort band $[T_{low}, T_{high}]$. MPC pre-closes louvers before occupancy surge at 14:00.}
 \label{fig:cs3-mpc}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
+\footnotesize
 \caption{CS3 quantitative results: comfort maintenance and peak stress reduction.}
 \label{tab:cs3-results}
-\begin{tabularx}{\textwidth}{@{} l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+\begin{tabularx}{\columnwidth}{@{} l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
 \toprule
 \textbf{Method} & \textbf{Comfort rate (\%)} & \textbf{Peak stress reduction (\%)} & \textbf{DGI exceedance (\%)} \\
 \midrule
@@ -541,17 +540,18 @@ A1 (no Perez) & 91.3 & 23.1 & 4.9 \\
 
 Figure \ref{fig:cs4-latitude} shows the USTA-derived optimal overhang depth ratio $r_{oh}^*$ as a function of latitude for south-facing facades, derived by running the full NSGA-II optimization pipeline at five representative TMY climates. The results confirm a monotonically increasing relationship between $r_{oh}^*$ and latitude in cooling-dominated scenarios (lat $< 35^\circ$), transitioning to a non-monotonic relationship in the $35^\circ$--$50^\circ$ transition zone where both heating and cooling seasons are significant. At lat $> 50^\circ$, optimized designs favor reduced overhang to maximize winter solar gains, with thermal mass and night insulation becoming the dominant performance levers instead.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/figure_7.png}
+\includegraphics[width=\columnwidth]{figures/figure_7.png}
 \caption{Cross-latitude generalisation: optimal south-facing overhang ratio $r_{oh}^*$ vs.\ latitude for cooling-proxy minimization (USTA-Full). The transition from cooling-dominated to heating-dominated design strategies is evident at approximately $35^\circ$--$45^\circ$N.}
 \label{fig:cs4-latitude}
 \end{figure}
 
 These results provide a quantitative basis for the design rules summarized in Table \ref{tab:latitude-rules}. Importantly, the model structure (Perez + 3R2C + MPC) remains unchanged across all five latitudes; only the site-specific inputs (TMY weather, occupancy schedule, comfort setpoints) are updated, demonstrating the transferability of the USTA framework.
 
-\begin{table}[htbp]
+\begin{table*}[!t]
 \centering
+\small
 \caption{Latitude-based design guidelines derived from CS4 results.}
 \label{tab:latitude-rules}
 \begin{tabularx}{\textwidth}{@{} l l >{\raggedright\arraybackslash}X c >{\raggedright\arraybackslash}X @{}}
@@ -564,7 +564,7 @@ $45^\circ$--$60^\circ$N & Heating-dominated & Solar harvesting & 0.1--0.3 & Ther
 $> 60^\circ$N & Subarctic & Max.\ passive storage & 0.0--0.1 & $C_m, k_R$ \\
 \bottomrule
 \end{tabularx}
-\end{table}
+\end{table*}
 
 \section{Ablation Study and Sensitivity Analysis}
 \label{sec:ablation}
@@ -573,11 +573,12 @@ $> 60^\circ$N & Subarctic & Max.\ passive storage & 0.0--0.1 & $C_m, k_R$ \\
 
 To quantify the contribution of each USTA component, we conduct the ablation experiments defined in Table \ref{tab:ablation-design} (Section \ref{sec:setup}). Table \ref{tab:ablation-results} summarizes results for CS1 across all ablation variants, reporting three aggregate metrics: annual cooling reduction vs.\ unshaded baseline, comfort violation rate, and DGI exceedance rate.
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
+\footnotesize
 \caption{Ablation study results for CS1 (warm-climate retrofit). All variants use the same building model and climate data.}
 \label{tab:ablation-results}
-\begin{tabularx}{\textwidth}{@{} l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
+\begin{tabularx}{\columnwidth}{@{} l >{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X @{}}
 \toprule
 \textbf{Variant} & \textbf{Cooling reduction (\%)} & \textbf{Comfort violation (\%)} & \textbf{DGI exceedance (\%)} \\
 \midrule
@@ -596,9 +597,9 @@ Removing the Perez model (A1) reduces cooling performance by 4.7 percentage poin
 
 We conduct local (one-at-a-time, OAT) and global (Morris screening) sensitivity analyses by varying four key parameters by $\pm 20\%$ from their nominal values: (i) Solar Heat Gain Coefficient (SHGC); (ii) total thermal mass capacitance $C_m$; (iii) envelope thermal resistance $R_{oa}$; and (iv) occupancy schedule shift ($\pm 2$ hours from nominal).
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/figure_8.png}
+\includegraphics[width=\columnwidth]{figures/figure_8.png}
 \caption{Morris sensitivity analysis results: elementary effect means ($\mu^*$) and standard deviations ($\sigma$) for four parameters across five performance metrics. SHGC and $C_m$ consistently dominate all metrics.}
 \label{fig:sensitivity}
 \end{figure}
