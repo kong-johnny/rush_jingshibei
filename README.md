@@ -10,7 +10,7 @@
 
 *Qingru Zhang | Beijing Normal University*
 
-[📄 Paper](./main_twocolumn.pdf) • [📊 Figures](./figures/) • [🔧 Scripts](./scripts/) • [🌐 Website](./docs/index.html)
+[📄 Paper](./main_twocolumn.pdf) • [📊 Figures](./figures/) • [🔧 Scripts](./scripts/) • [🌐 Website](https://kong-johnny.github.io/rush_jingshibei/)
 
 </div>
 
@@ -154,6 +154,6 @@ MIT License - feel free to use and build upon!
 
 Made with ❤️ and ☀️
 
-[🌐 View Website](./docs/index.html)
+[🌐 View Website](https://kong-johnny.github.io/rush_jingshibei/)
 
 </div>
